@@ -1,0 +1,232 @@
+from pickle import TRUE
+from bs4 import BeautifulSoup
+from pathlib import Path
+import requests
+import time
+import sys
+import os
+
+def replace_hex_in_file(filename, old_hex, new_hex):
+    # Chuyển đổi mã hex từ chuỗi sang bytes
+    old_hex_bytes = bytes.fromhex(old_hex)
+    new_hex_bytes = bytes.fromhex(new_hex)
+    
+    with open(filename, "rb") as file:
+        data = file.read()
+    
+    new_data = data.replace(old_hex_bytes, new_hex_bytes)
+    
+    with open(filename, "wb") as file:
+        file.write(new_data)
+
+def createFileInforders(parentForder, fileName):
+    for root, dirs, _ in os.walk(parentForder):
+        for dir in dirs:
+            dir_path = os.path.join(root, dir)
+            new_file_path = os.path.join(dir_path, fileName)
+            
+            with open(new_file_path, 'wb'):
+                pass
+            
+def readAndDeleteLine(directory, line_percentage):
+    for root, dirs, files in os.walk(directory):
+        for file in files:
+            file_path = os.path.join(root, file)
+            if file_path.endswith('.jpg'):
+                with open(file_path, 'r', encoding='latin-1') as txt_file:
+                    lines = txt_file.readlines()
+                    txt_file.close()
+
+                num_lines = len(lines)
+                num_lines_to_delete = num_lines
+
+                new_lines = lines[:-num_lines_to_delete]
+
+                with open(file_path, 'w', encoding='latin-1') as txt_file:
+                    txt_file.writelines(new_lines)
+                    txt_file.close()
+              
+def readAndDeleteLin(directory, line_percentage):
+    for root, dirs, files in os.walk(directory):
+        for file in files:
+            file_path = os.path.join(root, file)
+            if file_path.endswith('.png'):
+                with open(file_path, 'r', encoding='latin-1') as txt_file:
+                    lines = txt_file.readlines()
+                    txt_file.close()
+
+                num_lines = len(lines)
+                num_lines_to_delete = num_lines
+                new_lines = lines[:-num_lines_to_delete]
+                with open(file_path, 'w', encoding='latin-1') as txt_file:
+                    txt_file.writelines(new_lines)
+                    txt_file.close()
+ 
+def line():
+    for i in """#################################################""":
+        print(i, end = "")
+        time.sleep(0.015)
+    print()
+
+def banner():
+    for i in """#################################################
+#      TOOL TẠO FIX LAG ROBLOX VERSION 1.0      # 
+#       Zalo: 0914017168 - Trần Quốc Tuấn       # 
+#         Donate - Mbank: 0914017168            # 
+#              Youtube: LAG MOBILE              #  
+#################################################""":
+        print(i, end = "")
+        time.sleep(0.01)
+    print()
+
+def loadding():
+    print("Loadding",end="\r")
+    for i in range(10):
+        print("Loadding.", end="\r")
+        time.sleep(0.1)
+        print("Loadding..", end="\r")
+        time.sleep(0.1)
+        print("Loadding...", end="\r")
+        time.sleep(0.1)
+        print("Loadding    ",end="\r")
+        time.sleep(0.2)        
+    print("                     ",end="\r")
+
+banner()
+
+print("Link lấy key: https://anotepad.com/notes/59shppwa")
+filename = { "shaders_glsles.pack", "shaders_glsles3.pack", "shaders_vulkan_mobile.pack" }
+url = "https://ntnl1302.github.io/keyword/key.html"
+response = requests.get(url)
+soup = BeautifulSoup(response.text, 'html.parser')
+key0=soup.title.string
+key = str(input("Nhập key: "))       
+if key == key0 :
+    time.sleep(0.05)
+    print("Key đúng ", end = "\r")
+    time.sleep(0.5)
+    print("          ", end = "\r")
+    for i in range(49):
+        print("#", end="")
+        time.sleep(0.02)
+    print("")
+else:
+    time.sleep(0.05)
+    print("Key sai, vui lòng get key lại")
+    time.sleep(0.05)
+    exit()   
+time.sleep(0.05)
+loadding()
+print("1.Del 30% Ef ")
+time.sleep(0.05)
+print("2.Del 20% Ef ")
+time.sleep(0.05)
+print("3.Del Lá Nền ")
+time.sleep(0.05)
+print("4.Del Màn Biển ")
+time.sleep(0.05)
+print("5.Del Fastmode ")
+time.sleep(0.05)
+print("6.Del 90% Ef ")
+time.sleep(0.05)
+print("7.Del Haki ")
+time.sleep(0.05)
+print("8.Tạo file Cre ")
+time.sleep(0.05)
+print("9.Xóa ảnh res ")
+time.sleep(0.05)
+print("0.HDSD Tool ")
+time.sleep(0.05)
+note = """Lưu ý: đặt tool kèm 3 file trong mục shaders ở chung 1 chỗ để sử dụng các tính năng từ 1 -> 7
+Xóa ảnh res yêu cầu đặt tool kèm thư mục res"""
+while TRUE: 
+    line()
+    n = int(input("Nhập chế độ: "))
+    time.sleep(0.05)
+    if n == 1:
+        old_hex = "5061727469636C654375727665" 
+        new_hex = "5061727469636C654375727600" 
+        old_hex1 = "5061727469636C65437573746F6D" 
+        new_hex1 = "5061727469636C65437573746F00"
+        for i in filename:
+            replace_hex_in_file(i, old_hex, new_hex)
+            replace_hex_in_file(i, old_hex1, new_hex1)
+        print("Xong", end="\r")
+        time.sleep(2)
+        print("       ", end="\r")  
+    if n == 2:
+        old_hex = "56535F" 
+        new_hex = "565300"
+        old_hex1 = "44656661756C7456535F" 
+        new_hex1 = "44656661756C74565300"
+        for i in filename:
+            replace_hex_in_file(i, old_hex, new_hex)   
+            replace_hex_in_file(i, old_hex1, new_hex1)
+        print("Xong", end="\r")
+        time.sleep(2)
+        print("       ", end="\r")
+    if n == 3:
+        old_hex = "4D6174657269616C57616E67" 
+        new_hex = "4D6174657269616C57616E00"
+        for i in filename:
+            replace_hex_in_file(i, old_hex, new_hex)
+        print("Xong", end="\r")
+        time.sleep(2)
+        print("       ", end="\r")
+    if n == 4:
+        old_hex = "44656661756C745472616E73706172656E74" 
+        new_hex = "44656661756C745472616E73706172656E00"
+        old_hex1 = "44656661756C745265666C656374696F6E" 
+        new_hex1 = "44656661756C745265666C656374696F00"  
+        for i in filename:
+            replace_hex_in_file(i, old_hex, new_hex)
+            replace_hex_in_file(i, old_hex1, new_hex1)
+        print("Xong", end="\r")
+        time.sleep(2)
+        print("       ", end="\r")    
+    if n == 5:
+        old_hex = "44656661756C74506C6173746963" 
+        new_hex = "44656661756C74506C6173746900"
+        for i in filename:
+            replace_hex_in_file(i, old_hex, new_hex)
+        print("Xong", end="\r")
+        time.sleep(2)
+        print("       ", end="\r")    
+    if n == 6:
+        old_hex = "44656661756C744E656F6E46535F" 
+        new_hex = "44656661756C744E656F6E465300"   
+        for i in filename:
+            replace_hex_in_file(i, old_hex, new_hex)
+        print("Xong", end="\r")
+        time.sleep(2)
+        print("       ", end="\r")     
+    if n == 7:
+        old_hex = "476C6173734653" 
+        new_hex = "476C6173734600"  
+        for i in filename:
+            replace_hex_in_file(i, old_hex, new_hex)
+        print("Xong", end="\r")
+        time.sleep(2)
+        print("       ", end="\r")      
+    if n == 8:
+        parentForder = input("Nhập Folder: ")
+        createFileInforders(parentForder, input("Nhập tên Cre: "));
+        print("Xong", end="\r")
+        time.sleep(2)
+        print("       ", end="\r")   
+    if n == 9:
+        folder_path = "res"
+        readAndDeleteLin(folder_path, 100)
+        readAndDeleteLine(folder_path, 100)
+        print("Xong", end="\r")
+        time.sleep(2)
+        print("       ", end="\r")
+    if n == 0:
+        for i in note:
+            print(i, end = "")
+            time.sleep(0.02)
+        print()
+
+
+      
+
